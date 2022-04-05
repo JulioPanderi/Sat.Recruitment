@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.1.32228.430
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sat.Recruitment.Api.Client", "Sat.Recruitment.ApiClient\Sat.Recruitment.Api.Client.csproj", "{76BE55CB-79B8-4DA8-98EB-FC8EA014761E}"
 EndProject
@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sat.Recruitment.Api", "Sat.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sat.Recruitment.Api.Infrastructure", "Sat.Recruitment.Api.Repository\Sat.Recruitment.Api.Infrastructure.csproj", "{1685A0DA-E3FB-4F94-B78B-918C4EE5245A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sat.Rcruitment.Api.Test", "Sat.Rcruitment.Api.Test\Sat.Rcruitment.Api.Test.csproj", "{587FEF25-80E1-4FEB-B2A2-599B086587FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sat.Rcruitment.Api.Test", "Sat.Rcruitment.Api.Test\Sat.Rcruitment.Api.Test.csproj", "{587FEF25-80E1-4FEB-B2A2-599B086587FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

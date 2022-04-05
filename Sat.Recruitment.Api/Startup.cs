@@ -7,6 +7,10 @@ using Microsoft.OpenApi.Models;
 using System;
 
 using Sat.Recruitment.Api.Client.Handlers;
+using Sat.Recruitment.Api.Domain.IHelpers;
+using Sat.Recruitment.Api.Domain.Helpers;
+using Sat.Recruitment.Api.IRepository;
+using Sat.Recruitment.Api.Repository;
 
 namespace Sat.Recruitment.Api
 {
@@ -29,11 +33,16 @@ namespace Sat.Recruitment.Api
             })
             .AddHttpMessageHandler<HeaderBaseHandler>();
 
+            //Services injection
+            services.AddTransient<IUserHelper, UserHelper>();
+            services.AddTransient<IUserRepository, UserRepository>();
+
             //Swagger
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title= "Sat Recruitment Api", Version = "v1", }));
 
             //Add controllers
             services.AddControllers();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

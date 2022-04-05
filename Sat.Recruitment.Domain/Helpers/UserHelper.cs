@@ -1,20 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Microsoft.Extensions.DependencyInjection;
+using Sat.Recruitment.Api.Domain.IHelpers;
 using Sat.Recruitment.Api.Domain.Model;
+using Sat.Recruitment.Api.IRepository;
 using Sat.Recruitment.Api.Repository;
 
 namespace Sat.Recruitment.Api.Domain.Helpers
 {
-    public class UserHelper
+    public class UserHelper : IUserHelper
     {
+        //Repo
+        IUserRepository userRepository;
+        
+        //Users list
         List<IUser> _users;
 
-        public UserHelper()
+        //Dispose
+        private readonly IServiceScope scope;
+        private bool disposedValue;
+
+        public UserHelper(IUserRepository userRepository, IServiceScopeFactory serviceScopeFactory)
         {
-            UserRepository repo = new UserRepository();
-            var _users = repo.GetUsersFromFile();
+            scope = serviceScopeFactory.CreateScope();
+            this.userRepository = userRepository;
+            Init();
+        }
+
+        private void Init()
+        {
+            var _users = userRepository.GetUsersFromFile();
             this._users = (from u in _users
                            select CreateUser(
                                         u.Name,
@@ -37,10 +53,10 @@ namespace Sat.Recruitment.Api.Domain.Helpers
                            where (u.Email == user.Email || u.Phone == user.Phone)
                                   || (u.Name == user.Name && u.Address == user.Address)
                            select u).FirstOrDefault();
-            
+
             return (auxUser != null);
         }
-        
+
         /// <summary>
         /// Creates the user type
         /// </summary>
@@ -73,12 +89,27 @@ namespace Sat.Recruitment.Api.Domain.Helpers
                     break;
             }
             user.Name = name;
-            user.Email = email; 
+            user.Email = email;
             user.Address = address;
             user.Phone = phone;
             user.Money = money;
-            
+
             return user;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing) scope.Dispose();
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Sat.Recruitment.Api.IRepository;
 
 namespace Sat.Recruitment.Api.Repository
 {
-    public class UserRepository
+    public class UserRepository :IUserRepository
     {
         /// <summary>
         /// Read all the records from the file
